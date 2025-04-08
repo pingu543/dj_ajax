@@ -10,6 +10,7 @@ posts
 {% endblock title %}
 
 {% block content %}
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
     {% comment %} {% for obj in qs %}
         {{obj.title}} - {{obj.body}} <br>
     {% endfor %} {% endcomment %}
