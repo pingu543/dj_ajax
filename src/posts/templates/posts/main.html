@@ -11,9 +11,30 @@ posts
 
 {% block content %}
     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-    {% comment %} {% for obj in qs %}
-        {{obj.title}} - {{obj.body}} <br>
-    {% endfor %} {% endcomment %}
+    <!-- Modal -->
+    <div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="addPostModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addPostModalLabel">Create post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    …
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">+ Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#addPostModal">
+        Add Post
+    </button>
+
     <div id="posts-box"></div>
     <div id="spinner-box" class="text-center">
         <div class="spinner-border" role="status"></div>
