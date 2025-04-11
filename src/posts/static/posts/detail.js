@@ -17,9 +17,17 @@ const spinnerBox = document.getElementById('spinner-box')
 const titleInput = document.getElementById('id_title')
 const bodyInput = document.getElementById('id_body')
 
-backBtn.addEventListener('click', () => {
-    window.history.back();
-})
+const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+// add csrf token to all ajax requests
+$.ajaxSetup({
+    headers: {
+        'X-CSRFToken': csrfToken
+    }
+});
+
+// backBtn.addEventListener('click', () => {
+//     window.history.back();
+// })
 
 $.ajax({
     type: 'GET',
@@ -68,9 +76,9 @@ updateForm.addEventListener('submit', e => {
     $.ajax({
         type: 'POST',
         url: updateUrl,
-        headers: {
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-        },
+        // headers: {
+        //     'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        // },
         data: {
             'title': titleInput.value,
             'body': bodyInput.value,
@@ -80,6 +88,26 @@ updateForm.addEventListener('submit', e => {
             handleAlerts('success', 'Post updated successfully')
             title.textContent = response.title
             body.textContent = response.body
+        },
+        error: function(error) {
+            console.error('error', error)
+        }
+    })
+})
+
+deleteForm.addEventListener('submit', e => {
+    e.preventDefault()
+
+    $.ajax({
+        type: 'POST',
+        url: deleteUrl,
+        // headers: {
+        //     'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        // },
+        success: function(response) {
+            console.log('success', response)
+            window.location.href = window.location.origin
+            localStorage.setItem('title', titleInput.value)
         },
         error: function(error) {
             console.error('error', error)

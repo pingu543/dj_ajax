@@ -1,0 +1,1 @@
+console.log('static profiles main js')
