@@ -17,16 +17,16 @@ $.ajaxSetup({
     }
 });
 
-$.ajax({
-    type: 'GET',
-    url: '/hello-world/',
-    success: function(response) {
-        console.log('success', response.text)
-    },
-    error: function(error) {
-        console.error('error', error)
-    }
-})
+// $.ajax({
+//     type: 'GET',
+//     url: '/hello-world/',
+//     success: function(response) {
+//         console.log('success', response.text)
+//     },
+//     error: function(error) {
+//         console.error('error', error)
+//     }
+// })
 
 const likeUnlikePosts = ()=> {
     const likeUnlikeForms = [...document.getElementsByClassName('like-unlike-forms')]
